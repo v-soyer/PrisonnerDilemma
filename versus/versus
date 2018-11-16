@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+
+import sys
+import Ia1
+import Ia2
+
+
+def printHappenning(turn, Ia1Action, Ia2Action, Ia1Score, Ia2Score):
+    print("--------------------------------------")
+    print("TURN %d" % (turn))
+    print("Ia1 choose to ", end='')
+    if (Ia1Action == 1):
+        print("BETRAY")
+    else:
+        print("TRUST")
+    print("Ia2 choose to ", end='')
+    if (Ia2Action == 1):
+        print("BETRAY")
+    else:
+        print("TRUST")
+    print("Ia1  %d - %d Ia2" % (Ia1Score, Ia2Score))
+
+def main():
+    turn = 1
+    ListIa1Action = []
+    ListIa2Action = []
+    Ia1Action = -1
+    Ia2Action = -1
+    Ia1Score = 0
+    Ia2Score = 0
+    try:
+        nb_turn = int(sys.argv[1])
+    except:
+        print("Arg should be an Int")
+        exit(84)
+    while (nb_turn > 0):
+        Ia1Action = Ia1.Ia_turn(ListIa2Action, ListIa1Action, Ia2Action, Ia1Action)
+        Ia2Action = Ia2.Ia_turn(ListIa1Action, ListIa1Action, Ia1Action, Ia2Action)
+        ListIa1Action.append(Ia1Action)
+        ListIa2Action.append(Ia2Action)
+        if Ia1Action > Ia2Action:
+            Ia2Score += 5
+        elif Ia1Action < Ia2Action:
+            Ia1Score += 5
+        elif Ia1Action == Ia2Action and IaAction == 1:
+            Ia2Score += 3
+            Ia1Score += 3
+        printHappenning(turn, Ia1Action, Ia2Action, Ia1Score, Ia2Score)
+        turn += 1
+        nb_turn -= 1
+
+if __name__ == '__main__':
+    main()
