@@ -42,7 +42,7 @@ def main():
             Ia2Score += 5
         elif Ia1Action < Ia2Action:
             Ia1Score += 5
-        elif Ia1Action == Ia2Action and IaAction == 1:
+        elif Ia1Action == Ia2Action and Ia1Action == 1:
             Ia2Score += 3
             Ia1Score += 3
         printHappenning(turn, Ia1Action, Ia2Action, Ia1Score, Ia2Score)
